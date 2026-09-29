@@ -1,0 +1,113 @@
+============================================================
+  CONSOLE MUDO = A MENSAGEM NAO CHEGA NO BOT
+============================================================
+
+Se ao receber msg de outro celular o console nao mostra NADA
+(nem [UPSERT]), o problema NAO e view-once.
+E a LIGACAO do bot com o WhatsApp (sessao / aparelho conectado).
+
+------------------------------------------------------------
+PASSO 0 — Versao certa
+------------------------------------------------------------
+1. Feche TODAS as janelas pretas do bot
+2. Extraia whatsapp-viewonce-bot.zip POR CIMA da pasta
+3. Rode start.bat
+4. TEM que aparecer:
+
+   whatsapp-viewonce-bot  v2.2.4
+   Se nao aparecer [UPSERT] = msg nao chega
+
+Se NAO aparecer v2.2.4, voce esta na pasta/codigo ERRADO.
+
+------------------------------------------------------------
+PASSO 1 — Teste de TEXTO (obrigatorio)
+------------------------------------------------------------
+Do OUTRO celular, mande so:
+
+   oi
+
+para o SEU numero (conversa privada).
+
+RESULTADOS:
+
+A) Aparece algo assim:
+   [UPSERT type=notify n=1] {fromMe=false jid=55... keys=conversation...}
+   -> Bot RECEBE mensagens. OK. Passe ao PASSO 3 (view-once).
+
+B) Aparece:
+   >>> CIPHERTEXT
+   ou
+   [UPSERT ... keys=- stub=2]
+   -> A msg CHEGOU no bot, mas NAO DESCRIPTOGRAFOU (Signal/LID).
+   -> Nao tem midia/texto para enviar ao privado.
+   -> Celular principal precisa estar ONLINE na hora.
+   -> Se repetir em TODA msg: PASSO 2 (reset-session + QR novo).
+   -> Teste com TEXTO "oi": se texto tambem for stub=2, e 100% sessao.
+
+C) So aparece [heartbeat] a cada 30s, SEM [UPSERT]
+   -> Mensagem NAO chega no PC. Va ao PASSO 2 (reset).
+
+D) Nao aparece nem heartbeat
+   -> Bot nao esta rodando / janela errada / node crashou.
+      Rode start.bat de novo e leia erros em vermelho.
+
+------------------------------------------------------------
+PASSO 2 — Reset da sessao (quase sempre resolve "mudo")
+------------------------------------------------------------
+NO CELULAR (seu numero principal):
+  WhatsApp -> Aparelhos conectados
+  Desconecte TODOS os aparelhos ligados ao bot
+  (Chrome, Ubuntu, Windows, etc.)
+
+NO PC:
+  1. Feche o bot
+  2. Duplo clique em: reset-session.bat
+     (ou apague a pasta auth_info manualmente)
+  3. Rode start.bat
+  4. Escaneie o QR NOVO
+  5. Espere:
+       ✅ Bot conectado
+       [user] 5537...@s.whatsapp.net
+       [heartbeat ...] a cada 30s
+  6. Do outro celular: mande "oi" de novo
+
+Se AINDA nao tiver [UPSERT]:
+  - Confirme em Aparelhos conectados que o bot APARECECEU de novo
+  - Desative VPN no PC e no celular
+  - Teste outra rede (4G)
+  - Feche WhatsApp Web em qualquer navegador
+  - So pode ter 1 bot/sessao Baileys nesse numero
+
+------------------------------------------------------------
+PASSO 3 — View-once (so depois do texto gerar UPSERT)
+------------------------------------------------------------
+Do outro celular: foto de visualizacao unica pro seu numero.
+NAO abra no seu celular.
+
+Esperado no console:
+  [UPSERT ... keys=...viewOnce...]
+  >>> VIEW-ONCE?
+  >>> VIEW-ONCE ENVIADA AO PRIVADO
+
+No WhatsApp (Mensagem para voce mesmo):
+  texto "detectei" + a foto normal
+
+------------------------------------------------------------
+POR QUE !revelar FUNCIONOU E O AUTOMATICO NAO
+------------------------------------------------------------
+!revelar usa a MENSAGEM CITADA no SEU app (ja tem a midia).
+O automatico precisa que o WhatsApp ENTREGUE a msg no bot (PC).
+Se a sessao esta morta/offline, o automatico fica mudo;
+o !revelar ainda pode funcionar.
+
+------------------------------------------------------------
+TESTE IDEAL DE VIEW-ONCE
+------------------------------------------------------------
+Outro numero -> DM privada -> VO
+Bot ligado com v2.2.4
+Voce NAO abre a VO no celular principal
+
+Grupo "so eu" enviando de si mesmo e pior caminho
+(WhatsApp manda stub SKDM e as vezes nao manda midia pro PC).
+
+============================================================

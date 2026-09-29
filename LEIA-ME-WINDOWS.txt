@@ -1,0 +1,78 @@
+========================================
+  BOT VIEW ONCE — GUIA RAPIDO WINDOWS
+========================================
+
+ERRO QUE VOCE VIU (npm error spawn git / ENOENT):
+  O Baileys puxava uma dependencia via Git.
+  Nesta versao 2.0.1 isso JA FOI CORRIGIDO
+  (libsignal vem direto do npm, sem Git).
+
+----------------------------------------
+PASSO A PASSO (do zero)
+----------------------------------------
+
+1) Feche a janela preta do bot (se estiver aberta).
+
+2) DELETE a pasta node_modules (se existir)
+   dentro de:
+   C:\Users\montx2\Downloads\whatsapp-viewonce-bot\
+
+   (botao direito -> Excluir)
+
+3) Preferivel: baixe de novo o zip ATUALIZADO
+   e extraia por cima (ou em pasta nova).
+
+4) Duplo clique em:  install.bat
+   Espere terminar com "Instalacao concluida".
+
+5) Abra config.js no Bloco de Notas e coloque:
+   OWNER_NUMBER: '55SEUDDDSEUNUMERO',
+
+6) Duplo clique em:  start.bat
+   Escaneie o QR Code no WhatsApp
+   (Aparelhos conectados -> Conectar um aparelho)
+
+----------------------------------------
+SE O install.bat AINDA FALHAR
+----------------------------------------
+
+Opcao A — instalar pelo CMD manualmente:
+
+  1. Abra o CMD
+  2. cd C:\Users\montx2\Downloads\whatsapp-viewonce-bot
+  3. rmdir /s /q node_modules
+  4. del package-lock.json
+  5. npm install --no-fund --no-audit
+
+Opcao B — instalar o Git (so se a Opcao A falhar):
+
+  https://git-scm.com/download/win
+  Na instalacao, marque:
+  "Git from the command line and also from 3rd-party software"
+  Feche e abra o CMD de novo, depois rode install.bat
+
+----------------------------------------
+DEIXAR 24H NO PC
+----------------------------------------
+
+Depois da 1a conexao (QR ok):
+  - Feche start.bat
+  - Rode start-pm2.bat
+
+Para ver logs: logs.bat
+Para parar:    stop-pm2.bat
+
+Para iniciar no login do Windows:
+  PowerShell na pasta do bot:
+    Set-ExecutionPolicy -Scope Process Bypass
+    .\windows-autostart.ps1
+
+----------------------------------------
+DICAS
+----------------------------------------
+
+- PC precisa ficar ligado e com internet.
+- Evite hibernar o PC se quiser o bot 24h.
+- Nao abra a view-once no celular antes do bot
+  processar (senao a midia some do servidor).
+- A pasta auth_info e a sua sessao — nao compartilhe.

@@ -1,0 +1,154 @@
+================================================================================
+  BOT-ZAP v4.0 — MODO ESPIÃO — GUIA COMPLETO DE COMANDOS
+  O bot mais cabuloso do WhatsApp
+  Digite no "Mensagem para você mesmo" (ou qualquer chat, desde que seja VOCÊ)
+================================================================================
+
+🔥 COMANDOS RÁPIDOS (SPY)
+==========================
+  .o.   ou .o          → revela view-once da mensagem citada
+  .1    ou !1          → lista pendentes (VO que falhou baixar)
+  .2    ou !2          → stats completos
+  .ping ou .p          → ping + status rápido
+
+FANTASMA (espelha sem marcar azul)
+===================================
+  !ghost on
+  !ghost off
+  !ghost                    → status + lista
+
+  !watch add 5537999999999
+  !watch add 5537999999999 Maria
+  !watch add +55 37 99999-9999
+  !watch rm 5537999999999
+  !watch list
+  !watch clear
+
+FILTROS (por número)
+=====================
+  !watch filter 5537... media-only
+  !watch filter 5537... no-stickers
+  !watch filter 5537... keywords:pix,dinheiro
+  !watch filter 5537... alert:urgente,ajuda
+  !watch filter 5537... mute
+  !watch filter 5537... unmute
+  !watch filter 5537... reset
+  !watch filter 5537...          → mostra filtro atual
+
+🔥 STALKER & ANALYTICS (v4.0)
+==============================
+  !stalk 5537999999999         → STALKEIA perfil completo:
+                                   • Foto de perfil (baixa!)
+                                   • About/status atual
+                                   • Grupos em comum
+                                   • Dispositivos detectados
+                                   • Padrões de atividade
+                                   • Tempo de resposta médio
+                                   • Palavras mais usadas
+
+  !analytics                   → Dashboard global (ranking de alvos)
+  !analytics 5537999999999     → Analytics detalhado do contato:
+                                   • Gráfico de atividade por hora
+                                   • Atividade por dia da semana
+                                   • Dispositivos com percentual
+                                   • Top 15 palavras mais usadas
+                                   • Breakdown de mídia
+                                   • Primeiro/último contato
+
+  !patterns 5537999999999      → Análise de padrões:
+                                   • Horários de pico
+                                   • Horários inativos (sono?)
+                                   • Dia mais ativo
+                                   • Palavras mais usadas
+                                   • Dispositivos
+
+  !speed 5537999999999         → Velocidade de resposta:
+                                   • Média, mediana, min, max
+                                   • Baseado em respostas reais
+
+  !network                     → Mapa de rede de contatos:
+                                   • Grupos em comum entre alvos
+                                   • Quem conhece quem
+                                   • Ranking de conexões
+
+ESPIAR / HISTÓRICO (sem marcar azul)
+=====================================
+  !peek 5537999999999        ← tenta cache + pedido ao CELULAR
+  !peek 5537999999999 4      ← até 4 msgs
+  !last 5537999999999        ← SÓ o que já está no histórico local do bot
+  !last 5537999999999 30
+  !log pix
+  !log 5537999999999 pix
+
+ALERTAS GLOBAIS
+================
+  !alert add pix,urgente,ajuda
+  !alert rm pix
+  !alert list
+  !alert clear
+
+RESUMO DIÁRIO
+==============
+  !resumo                 → manda agora
+  !resumo on              → agenda (padrão 22:00 SP)
+  !resumo off
+
+OUTROS
+=======
+  !menu
+  !ping
+
+================================================================================
+🔥 FEATURES AUTOMÁTICAS v4.0 (não precisam de comando)
+================================================================================
+
+📸 STATUS SAVER (automático)
+  • Baixa stories/status automaticamente dos contatos observados
+  • Salva em downloads/status/data/contato/
+  • Mídia (foto/vídeo) + texto
+
+😂 REACTION SPY (automático)
+  • Detecta reações (emojis) nas suas mensagens
+  • Notifica: "😂 REAÇÃO NA SUA MSG — Fulano"
+
+✅ READ SPY (automático)
+  • Detecta quando alguém leu suas mensagens (check azul)
+  • Detecta "digitando..." e "gravando áudio..." direcionado a você
+
+📱 DEVICE SPY (automático)
+  • Detecta iPhone/Android/Web de cada mensagem
+  • Notifica MUDANÇAS de dispositivo (ex: sempre usa iPhone e de repente Web)
+
+🧠 PATTERN ANALYZER (automático)
+  • Rastreia horários, dispositivos, palavras, frequência
+  • Alimenta !analytics, !patterns, !speed, !stalk
+
+🚨 SMART ALERTS (automático)
+  • Detecta atividade em horários incomuns
+  • Ex: pessoa que nunca manda msg às 3h de repente manda → alerta
+
+================================================================================
+O QUE O BOT NÃO FAZ / LIMITES
+================================================================================
+  • NÃO marca checks AZUIS (readMessages bloqueado).
+  • Checks CINZA (entregue) podem aparecer (multi-device do WhatsApp).
+  • Se VOCÊ abrir o chat no celular com confirmação de leitura LIGADA, o app
+    marca azul — leia as cópias no "Mensagem para você mesmo".
+  • Só vê mensagens que CHEGAM no SEU número (impossível ver chat dela com
+    terceiros).
+  • Anti-delete de mídia depende do CDN ainda ter o arquivo.
+  • Histórico/cache ficam em ./data/ (não compartilhe; está no .gitignore).
+
+================================================================================
+PASTAS
+================================================================================
+  auth_info/              sessão WhatsApp (NUNCA compartilhe)
+  data/ghost-state.json   lista de alvos + filtros
+  data/patterns.json      padrões de atividade (v4.0)
+  data/stats.json         estatísticas
+  data/msg-cache/         cache anti-delete (72h)
+  data/history/*.jsonl    histórico fantasma por chat
+  downloads/viewonce/     arquivos de view-once baixados
+  downloads/status/       stories/status salvos (v4.0)
+
+================================================================================
